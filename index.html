@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ku" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07120d">
+  <title>Zansti AI — یاریدەدەری خوێندن</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="login-logo">ز</div>
+      <h1>چوونەژوورەوە</h1>
+      <p>کۆدی بەکارهێنەر و وشەی نهێنییەکەت بنووسە بۆ بەکارهێنانی Zansti AI.</p>
+      <input id="username" autocomplete="username" placeholder="ناوی بەکارهێنەر">
+      <input id="password" type="password" autocomplete="current-password" placeholder="کلیلی نهێنی">
+      <button id="loginBtn">چوونە ژوورەوە →</button>
+      <div class="login-error" id="loginError"></div>
+      <small>هەر کۆدێک بۆ یەک ئامێرە و دووبارە لە ئامێری تر کار ناکات.</small>
+    </div>
+  </div>
+  <div class="bg-orb orb1"></div><div class="bg-orb orb2"></div>
+
+  <main class="app locked" id="app">
+    <header class="topbar"><button class="logout" id="logoutBtn">چوونەدەرەوە</button>
+      <div class="brand">
+        <div class="brand-mark"><span>ز</span></div>
+        <div>
+          <div class="brand-name">Zansti <b>AI</b></div>
+          <div class="brand-sub">یاریدەدەری زیرەکی خوێندن</div>
+        </div>
+      </div>
+      <button class="icon-btn" id="themeBtn" aria-label="گۆڕینی ڕووناکی">☼</button>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow"><span class="pulse"></span> AI بۆ تێگەشتنی وانە</div>
+      <h1>وانەکەت بنێرە،<br><span>بە ئاسانی تێی بگە.</span></h1>
+      <p>وێنەی وانەکە دابنێ؛ سیستەمەکە بابەتەکە دەخوێنێتەوە و بە زمانی سادەی قوتابی ڕوونی دەکاتەوە.</p>
+    </section>
+
+    <section class="subjects">
+      <button class="subject active" data-subject="زیندەزانی"><span>🧬</span><b>زیندەزانی</b></button>
+      <button class="subject" data-subject="فیزیا"><span>⚡</span><b>فیزیا</b></button>
+      <button class="subject" data-subject="کیمیا"><span>⚗️</span><b>کیمیا</b></button>
+      <button class="subject" data-subject="بیرکاری"><span>∑</span><b>بیرکاری</b></button>
+    </section>
+
+    <section class="workspace">
+      <div class="section-title">
+        <div><span class="step">01</span><div><h2>وانەکە دابنێ</h2><p>وێنە یان دەقی بابەتەکە</p></div></div>
+        <span class="selected" id="selectedSubject">زیندەزانی</span>
+      </div>
+
+      <label class="upload" id="dropZone">
+        <input id="imageInput" type="file" accept="image/*">
+        <div class="upload-icon">＋</div>
+        <strong>وێنەی وانەکە هەڵبژێرە</strong>
+        <span>یان وێنەکە لێرە دابنێ</span>
+        <small>JPG · PNG · WEBP</small>
+      </label>
+      <div class="preview-wrap hidden" id="previewWrap">
+        <img id="preview" alt="پێشبینینی وانە">
+        <button class="remove" id="removeImage">×</button>
+      </div>
+
+      <textarea id="lessonText" placeholder="ئەگەر وێنەت نییە، ناوی بابەتەکە یان دەقەکە لێرە بنووسە..."></textarea>
+
+      <div class="section-title compact">
+        <div><span class="step">02</span><div><h2>چی دەتەوێت؟</h2><p>یەکێک هەڵبژێرە</p></div></div>
+      </div>
+
+      <div class="modes">
+        <button class="mode active" data-mode="summary"><span>✦</span><div><b>کورتەی بابەت</b><small>گرنگترین خاڵەکان</small></div></button>
+        <button class="mode" data-mode="explain"><span>◈</span><div><b>ڕوونکردنەوەی زانستی</b><small>هەنگاو بە هەنگاو</small></div></button>
+        <button class="mode" data-mode="practice"><span>✓</span><div><b>ڕاهێنان و تاقیکردنەوە</b><small>پرسیار + وەڵام</small></div></button>
+      </div>
+
+      <button class="analyze" id="analyzeBtn"><span>✦</span> دەستپێکردنی شیکردنەوە <i>→</i></button>
+
+      <div class="loading hidden" id="loading">
+        <div class="loader"></div>
+        <b>AI لەسەر بابەتەکەت کار دەکات...</b>
+        <span>تکایە چاوەڕێ بکە</span>
+      </div>
+
+      <section class="result hidden" id="result">
+        <div class="result-head">
+          <div><span class="ai-badge">AI</span><div><h2 id="resultTitle">کورتەی بابەت</h2><p id="resultMeta">زیندەزانی</p></div></div>
+          <button class="copy" id="copyBtn">کۆپی</button>
+        </div>
+        <div class="result-body" id="resultBody"></div>
+      </section>
+    </section>
+
+    <section class="about">
+      <div class="about-icon">ز</div>
+      <div>
+        <h3>سڵاو، من میوان سیف الدینم 👋</h3>
+        <p>خاوەنی چەندین سیستەم و شارەزا لە بواری مارکێتینگ و بازارگەری و سیستەم دروستکردن.</p>
+        <p>ئامانج لەم سیستەمە ئەوەیە بابەتێک بە جوانی و بە شێوەیەکی ئاسان تێبگەیەنێت.</p>
+        <a href="https://wa.me/9647512171505" target="_blank" rel="noopener">WhatsApp · +964 751 217 1505</a>
+      </div>
+    </section>
+
+    <footer>© 2026 Zansti AI · بۆ خوێندکاران بە دڵ ❤️</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

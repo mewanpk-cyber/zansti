@@ -1,0 +1,5 @@
+بۆ Cloudflare/Render/Railway یان سێرڤەرێکی Node.js:
+1) فایلەکان upload/deploy بکە.
+2) Environment variable ـی OPENAI_API_KEY دابنێ.
+3) OPENAI_MODEL دەتوانیت بگۆڕیت.
+4) Start command: npm start
